@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="WordCount" default="default" basedir=".">
+    <description>Builds, tests, and runs the project WordCount.</description>
+    <import file="nbproject/build-impl.xml"/>
+    <property name="projectname" value="WordCount"/>    
+    <property name="remoteserver" value="hhscyber@login.hathi.surfsara.nl"/>    
+    <property name="remotelocation" value="/home/hhscyber/jars/"/>    
+    <property name="remotejar" value="${projectname}.jar"/>    
+    <property name="sshkey" value="/Users/jeroen/.ssh/id_rsa"/>      
+    <property name="localfile" value="dist/${projectname}.jar"/>    
+    <property name="remotefile" value="${remoteserver}:${remotelocation}${remotejar}"/>    
+    
+    <target name="-post-jar">
+        <echo message="${localfile}"/>
+        <scp remoteToFile="${remotefile}"
+             localFile="${localfile}"
+             keyfile="${sshkey}" trust="yes" sftp="true">
+          </scp>
+    </target>
+
+</project>
